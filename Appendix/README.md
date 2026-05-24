@@ -1,10 +1,10 @@
 # Appendix Materials for Black-box Model Merging
 
-This directory is intended to collect the post-bibliography appendix material and supporting result tables for the paper.
+This directory contains the online appendix material referenced from the anonymous submission. It includes implementation details, full result tables, baseline hyperparameter details, dataset/model-pool descriptions, robustness analysis, and the Evo-Merging pseudocode.
 
 ## Files
 
-- `appendix.tex`: LaTeX appendix content used after the bibliography in the paper source.
+- `appendix.tex`: LaTeX appendix content with the full supplementary material.
 
 ## Paper integration
 
