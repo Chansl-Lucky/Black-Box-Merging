@@ -1,0 +1,116 @@
+{
+  "datasets": [
+    {
+      "dataset_name": "mit-movie_sample300",
+      "file_name": "mit-movie_sample300.json",
+      "task": "entity_span",
+      "split": "paper_eval",
+      "records": "300"
+    },
+    {
+      "dataset_name": "mit-restaurant-sampled300",
+      "file_name": "mit-restaurant-sampled300.json",
+      "task": "entity_span",
+      "split": "paper_eval",
+      "records": "300"
+    },
+    {
+      "dataset_name": "FabNER_sample300",
+      "file_name": "FabNER_sample300.json",
+      "task": "entity_span",
+      "split": "paper_eval",
+      "records": "300"
+    },
+    {
+      "dataset_name": "FindVehicle_sample300",
+      "file_name": "FindVehicle_sample300.json",
+      "task": "entity_type",
+      "split": "paper_eval",
+      "records": "300"
+    },
+    {
+      "dataset_name": "conll04_sample300",
+      "file_name": "conll04_sample300.json",
+      "task": "relation_extraction",
+      "split": "paper_eval",
+      "records": "300"
+    },
+    {
+      "dataset_name": "New-York-Times-RE_sample_30000_sample300",
+      "file_name": "New-York-Times-RE_sample_30000_sample300.json",
+      "task": "relation_extraction",
+      "split": "paper_eval",
+      "records": "300"
+    },
+    {
+      "dataset_name": "ACE05_sample300",
+      "file_name": "ACE05_sample300.json",
+      "task": "event_extraction",
+      "split": "paper_eval",
+      "records": "300"
+    },
+    {
+      "dataset_name": "CASIE_sample300",
+      "file_name": "CASIE_sample300.json",
+      "task": "event_trigger",
+      "split": "paper_eval",
+      "records": "300"
+    },
+    {
+      "dataset_name": "Ontonotes_sample300",
+      "file_name": "Ontonotes_sample300.json",
+      "task": "entity_span",
+      "split": "paper_eval",
+      "records": "300"
+    },
+    {
+      "dataset_name": "SciERC_sample300",
+      "file_name": "SciERC_sample300.json",
+      "task": "relation_extraction",
+      "split": "paper_eval",
+      "records": "300"
+    },
+    {
+      "dataset_name": "WikiNeural_sample300",
+      "file_name": "WikiNeural_sample300.json",
+      "task": "entity_span",
+      "split": "paper_eval",
+      "records": "300"
+    },
+    {
+      "dataset_name": "merged_dataset",
+      "file_name": "merged_dataset.json",
+      "task": "mixed_user_batch",
+      "split": "user_bundle",
+      "records": "800"
+    },
+    {
+      "dataset_name": "merged_dataset_25",
+      "file_name": "merged_dataset_25.json",
+      "task": "mixed_user_batch",
+      "split": "user_bundle",
+      "records": "200"
+    },
+    {
+      "dataset_name": "merged_dataset_50",
+      "file_name": "merged_dataset_50.json",
+      "task": "mixed_user_batch",
+      "split": "user_bundle",
+      "records": "350"
+    },
+    {
+      "dataset_name": "merged_dataset_75",
+      "file_name": "merged_dataset_75.json",
+      "task": "mixed_user_batch",
+      "split": "user_bundle",
+      "records": "525"
+    },
+    {
+      "dataset_name": "glue_merged",
+      "file_name": "merge_glue.jsonl",
+      "task": "glue_multi_task",
+      "split": "user_bundle",
+      "records": "500"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "preset_id": "glue_fhx",
+  "base_model_name_or_path": "models/llama3.1-8b-instruct",
+  "adapter_dict": {
+    "cola_qa_train": "adapters/pool20/cola_qa_train/adapter_model.safetensors",
+    "mnli_qa_train": "adapters/pool20/mnli_qa_train/adapter_model.safetensors",
+    "mrpc_qa_train": "adapters/pool20/mrpc_qa_train/adapter_model.safetensors",
+    "qnli_qa_train": "adapters/pool20/qnli_qa_train/adapter_model.safetensors",
+    "qqp_qa_train": "adapters/pool20/qqp_qa_train/adapter_model.safetensors",
+    "rte_qa_train": "adapters/pool20/rte_qa_train/adapter_model.safetensors",
+    "sst2_qa_train": "adapters/pool20/sst2_qa_train/adapter_model.safetensors"
+  },
+  "target_modules": [
+    "up_proj",
+    "q_proj",
+    "o_proj",
+    "down_proj",
+    "gate_proj",
+    "k_proj",
+    "v_proj"
+  ],
+  "lora_alpha": 16,
+  "lora_dropout": 0.1,
+  "r": 8,
+  "bias": "none",
+  "fan_in_fan_out": false,
+  "inference_mode": true,
+  "init_lora_weights": true,
+  "modules_to_save": null,
+  "task_type": "CAUSAL_LM",
+  "use_dora": false,
+  "use_rslora": false,
+  "query_plus": {
+    "dataset": "glue_merged",
+    "dataset_dir": "data/Userdata",
+    "template": "llama3",
+    "cutoff_len": 2048,
+    "max_samples": null,
+    "batch_size": 15,
+    "evaluation_batches": 20,
+    "temperature": 0.95,
+    "top_p": 0.7,
+    "top_k": 50,
+    "max_new_tokens": 1024,
+    "repetition_penalty": 1.0
+  },
+  "search": {
+    "popsize": 20,
+    "stage1_budget": 400,
+    "stage2_budget": 1000,
+    "stage1_sigma": 0.05,
+    "stage2_sigma": 0.05,
+    "scale_bound": 1.5,
+    "stage1_l1": 0.05,
+    "stage2_l1": 0.05
+  },
+  "metadata": {
+    "legacy_source": "adapters/FHX.json",
+    "open_source_adapter_pool": "pool20",
+    "open_source_note": "This preset ships with a curated local pool of 20 adapters. The full adapter collection will be released on Hugging Face."
+  }
+}

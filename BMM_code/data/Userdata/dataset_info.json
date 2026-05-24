@@ -1,0 +1,145 @@
+{
+  "mit-movie_sample300": {
+    "file_name": "datasets/mit-movie_sample300.json",
+    "columns": {
+      "response": "output",
+      "prompt": "instruction",
+      "query": "input",
+      "history": "history"
+    }
+  },
+  "mit-restaurant-sampled300": {
+    "file_name": "datasets/mit-restaurant-sampled300.json",
+    "columns": {
+      "response": "output",
+      "prompt": "instruction",
+      "query": "input",
+      "history": "history"
+    }
+  },
+  "FabNER_sample300": {
+    "file_name": "datasets/FabNER_sample300.json",
+    "columns": {
+      "response": "output",
+      "prompt": "instruction",
+      "query": "input",
+      "history": "history"
+    }
+  },
+  "FindVehicle_sample300": {
+    "file_name": "datasets/FindVehicle_sample300.json",
+    "columns": {
+      "response": "output",
+      "prompt": "instruction",
+      "query": "input",
+      "history": "history"
+    }
+  },
+  "conll04_sample300": {
+    "file_name": "datasets/conll04_sample300.json",
+    "columns": {
+      "response": "output",
+      "prompt": "instruction",
+      "query": "input",
+      "history": "history"
+    }
+  },
+  "New-York-Times-RE_sample_30000_sample300": {
+    "file_name": "datasets/New-York-Times-RE_sample_30000_sample300.json",
+    "columns": {
+      "response": "output",
+      "prompt": "instruction",
+      "query": "input",
+      "history": "history"
+    }
+  },
+  "ACE05_sample300": {
+    "file_name": "datasets/ACE05_sample300.json",
+    "columns": {
+      "response": "output",
+      "prompt": "instruction",
+      "query": "input",
+      "history": "history"
+    }
+  },
+  "CASIE_sample300": {
+    "file_name": "datasets/CASIE_sample300.json",
+    "columns": {
+      "response": "output",
+      "prompt": "instruction",
+      "query": "input",
+      "history": "history"
+    }
+  },
+  "Ontonotes_sample300": {
+    "file_name": "datasets/Ontonotes_sample300.json",
+    "columns": {
+      "response": "output",
+      "prompt": "instruction",
+      "query": "input",
+      "history": "history"
+    }
+  },
+  "SciERC_sample300": {
+    "file_name": "datasets/SciERC_sample300.json",
+    "columns": {
+      "response": "output",
+      "prompt": "instruction",
+      "query": "input",
+      "history": "history"
+    }
+  },
+  "WikiNeural_sample300": {
+    "file_name": "datasets/WikiNeural_sample300.json",
+    "columns": {
+      "response": "output",
+      "prompt": "instruction",
+      "query": "input",
+      "history": "history"
+    }
+  },
+  "merged_dataset": {
+    "file_name": "datasets/merged_dataset.json",
+    "columns": {
+      "response": "output",
+      "prompt": "instruction",
+      "query": "input",
+      "history": "history"
+    }
+  },
+  "merged_dataset_25": {
+    "file_name": "datasets/merged_dataset_25.json",
+    "columns": {
+      "response": "output",
+      "prompt": "instruction",
+      "query": "input",
+      "history": "history"
+    }
+  },
+  "merged_dataset_50": {
+    "file_name": "datasets/merged_dataset_50.json",
+    "columns": {
+      "response": "output",
+      "prompt": "instruction",
+      "query": "input",
+      "history": "history"
+    }
+  },
+  "merged_dataset_75": {
+    "file_name": "datasets/merged_dataset_75.json",
+    "columns": {
+      "response": "output",
+      "prompt": "instruction",
+      "query": "input",
+      "history": "history"
+    }
+  },
+  "glue_merged": {
+    "file_name": "datasets/merge_glue.jsonl",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  }
+}

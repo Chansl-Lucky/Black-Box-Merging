@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BMM Frontend</title>
+    <style>
+      :root { color-scheme: light; font-family: Arial, sans-serif; background: #f5f7fb; color: #142033; }
+      body { margin: 0; }
+      .page { max-width: 1080px; margin: 0 auto; padding: 24px; }
+      .layout { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 20px; }
+      .panel { background: #ffffff; border: 1px solid #d7dfeb; border-radius: 8px; padding: 16px; }
+      h1, h2 { margin: 0 0 12px; font-size: 20px; }
+      h2 { font-size: 16px; }
+      .stack { display: grid; gap: 12px; }
+      label { display: grid; gap: 6px; font-size: 13px; }
+      input, select, textarea, button { font: inherit; }
+      input, select, textarea { border: 1px solid #c4cfdf; border-radius: 6px; padding: 10px 12px; background: #fff; }
+      textarea { min-height: 92px; resize: vertical; }
+      button { border: 1px solid #304a78; background: #304a78; color: #fff; border-radius: 6px; padding: 10px 12px; cursor: pointer; }
+      button.secondary { background: #fff; color: #304a78; }
+      .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+      pre { margin: 0; white-space: pre-wrap; word-break: break-word; background: #0f1726; color: #d8e1f0; border-radius: 6px; padding: 14px; min-height: 360px; }
+      .muted { color: #58677d; font-size: 13px; }
+      @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <h1>BMM Frontend</h1>
+      <p class="muted">A user submits query_plus and control vectors. The backend handles merge, evaluation, and optimization.</p>
+      <div class="layout">
+        <div class="stack">
+          <section class="panel stack">
+            <h2>Backend</h2>
+            <label>API Base URL<input id="apiBase" value="http://127.0.0.1:8010" /></label>
+            <div class="actions"><button id="loadPresets">Load Presets</button></div>
+          </section>
+          <section class="panel stack">
+            <h2>Create Session</h2>
+            <label>Preset<select id="presetId"></select></label>
+            <label>Base Model Override<input id="modelNameOrPath" placeholder="Optional" /></label>
+            <label>Dataset<input id="dataset" value="mit-movie_sample300" /></label>
+            <label>Dataset Dir<input id="datasetDir" value="data/Userdata" /></label>
+            <label>Template<input id="template" value="llama3" /></label>
+            <label>Batch Size<input id="batchSize" type="number" value="15" /></label>
+            <label>Evaluation Batches<input id="evaluationBatches" type="number" value="20" /></label>
+            <button id="createSession">Create Session</button>
+          </section>
+          <section class="panel stack">
+            <h2>BMM Controls</h2>
+            <label>Session ID<input id="sessionId" placeholder="Created automatically" /></label>
+            <label>Alpha Vector<textarea id="alpha">1,1,1</textarea></label>
+            <label>Beta Vector<textarea id="beta">0.33,0.33,0.34</textarea></label>
+            <label>Tag<input id="tag" value="frontend-run" /></label>
+            <div class="actions">
+              <button id="materialize">Materialize</button>
+              <button id="evaluate">Evaluate</button>
+              <button class="secondary" id="optimize">Optimize</button>
+            </div>
+          </section>
+        </div>
+        <section class="panel stack">
+          <h2>Response</h2>
+          <pre id="output">Ready.</pre>
+        </section>
+      </div>
+    </div>
+    <script>
+      const output = document.getElementById("output");
+      const presetId = document.getElementById("presetId");
+      function parseVector(text) {
+        return text.split(/[\s,]+/).map((item) => item.trim()).filter(Boolean).map((item) => Number(item));
+      }
+      function render(data) { output.textContent = JSON.stringify(data, null, 2); }
+      async function getJson(path) {
+        const base = document.getElementById("apiBase").value.replace(/\/$/, "");
+        const response = await fetch(`${base}${path}`);
+        const data = await response.json();
+        render(data);
+        return data;
+      }
+      async function postJson(path, payload) {
+        const base = document.getElementById("apiBase").value.replace(/\/$/, "");
+        const response = await fetch(`${base}${path}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const data = await response.json();
+        render(data);
+        return data;
+      }
+      async function loadPresets() {
+        const data = await getJson("/v1/presets");
+        presetId.innerHTML = "";
+        for (const item of data.items || []) {
+          const option = document.createElement("option");
+          option.value = item.preset_id;
+          option.textContent = item.preset_id;
+          presetId.appendChild(option);
+        }
+      }
+      async function createSession() {
+        const payload = {
+          preset_id: presetId.value,
+          model_name_or_path: document.getElementById("modelNameOrPath").value || null,
+          query_plus: {
+            dataset: document.getElementById("dataset").value,
+            dataset_dir: document.getElementById("datasetDir").value,
+            template: document.getElementById("template").value,
+            batch_size: Number(document.getElementById("batchSize").value),
+            evaluation_batches: Number(document.getElementById("evaluationBatches").value),
+          },
+        };
+        if (!payload.model_name_or_path) delete payload.model_name_or_path;
+        const data = await postJson("/v1/sessions", payload);
+        document.getElementById("sessionId").value = data.session_id || "";
+      }
+      function controlPayload() {
+        return {
+          alpha: parseVector(document.getElementById("alpha").value),
+          beta: parseVector(document.getElementById("beta").value),
+          tag: document.getElementById("tag").value,
+        };
+      }
+      async function materialize() {
+        const sessionId = document.getElementById("sessionId").value.trim();
+        await postJson(`/v1/sessions/${sessionId}/materialize`, controlPayload());
+      }
+      async function evaluate() {
+        const sessionId = document.getElementById("sessionId").value.trim();
+        await postJson(`/v1/sessions/${sessionId}/evaluate`, controlPayload());
+      }
+      async function optimize() {
+        const sessionId = document.getElementById("sessionId").value.trim();
+        await postJson(`/v1/sessions/${sessionId}/optimize`, {});
+      }
+      document.getElementById("loadPresets").addEventListener("click", loadPresets);
+      document.getElementById("createSession").addEventListener("click", createSession);
+      document.getElementById("materialize").addEventListener("click", materialize);
+      document.getElementById("evaluate").addEventListener("click", evaluate);
+      document.getElementById("optimize").addEventListener("click", optimize);
+      loadPresets().catch((error) => render({ error: String(error) }));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,144 @@
+{
+  "pool_name": "pool20",
+  "adapter_count": 20,
+  "adapters": [
+    {
+      "adapter_name": "NER_mit-movie_sft",
+      "path": "adapters/pool20/NER_mit-movie_sft"
+    },
+    {
+      "adapter_name": "ET_mit-movie_sft",
+      "path": "adapters/pool20/ET_mit-movie_sft"
+    },
+    {
+      "adapter_name": "NER_FabNER_sft",
+      "path": "adapters/pool20/NER_FabNER_sft"
+    },
+    {
+      "adapter_name": "ET_FabNER_sft",
+      "path": "adapters/pool20/ET_FabNER_sft"
+    },
+    {
+      "adapter_name": "NER_FindVehicle_sft",
+      "path": "adapters/pool20/NER_FindVehicle_sft"
+    },
+    {
+      "adapter_name": "ET_FindVehicle_sft",
+      "path": "adapters/pool20/ET_FindVehicle_sft"
+    },
+    {
+      "adapter_name": "NER_mit-restaurant_sft",
+      "path": "adapters/pool20/NER_mit-restaurant_sft"
+    },
+    {
+      "adapter_name": "ET_mit-restaurant_sft",
+      "path": "adapters/pool20/ET_mit-restaurant_sft"
+    },
+    {
+      "adapter_name": "RE_conll04",
+      "path": "adapters/pool20/RE_conll04"
+    },
+    {
+      "adapter_name": "EPR_conll04_sample_5000_sft",
+      "path": "adapters/pool20/EPR_conll04_sample_5000_sft"
+    },
+    {
+      "adapter_name": "EP_conll04_sft",
+      "path": "adapters/pool20/EP_conll04_sft"
+    },
+    {
+      "adapter_name": "RE_New-York-Times-RE_sample_30000_sft",
+      "path": "adapters/pool20/RE_New-York-Times-RE_sample_30000_sft"
+    },
+    {
+      "adapter_name": "EPR_New-York-Times-RE_sample_30000_sft",
+      "path": "adapters/pool20/EPR_New-York-Times-RE_sample_30000_sft"
+    },
+    {
+      "adapter_name": "cola_qa_train",
+      "path": "adapters/pool20/cola_qa_train"
+    },
+    {
+      "adapter_name": "mnli_qa_train",
+      "path": "adapters/pool20/mnli_qa_train"
+    },
+    {
+      "adapter_name": "mrpc_qa_train",
+      "path": "adapters/pool20/mrpc_qa_train"
+    },
+    {
+      "adapter_name": "qnli_qa_train",
+      "path": "adapters/pool20/qnli_qa_train"
+    },
+    {
+      "adapter_name": "qqp_qa_train",
+      "path": "adapters/pool20/qqp_qa_train"
+    },
+    {
+      "adapter_name": "rte_qa_train",
+      "path": "adapters/pool20/rte_qa_train"
+    },
+    {
+      "adapter_name": "sst2_qa_train",
+      "path": "adapters/pool20/sst2_qa_train"
+    }
+  ],
+  "presets": {
+    "mit_movie": [
+      "NER_mit-movie_sft",
+      "ET_mit-movie_sft",
+      "NER_mit-restaurant_sft",
+      "ET_mit-restaurant_sft",
+      "NER_FabNER_sft",
+      "ET_FabNER_sft"
+    ],
+    "fabner": [
+      "NER_FabNER_sft",
+      "ET_FabNER_sft",
+      "NER_FindVehicle_sft",
+      "ET_FindVehicle_sft",
+      "NER_mit-movie_sft",
+      "ET_mit-movie_sft"
+    ],
+    "findvehicle": [
+      "NER_FindVehicle_sft",
+      "ET_FindVehicle_sft",
+      "NER_FabNER_sft",
+      "ET_FabNER_sft",
+      "NER_mit-movie_sft",
+      "ET_mit-movie_sft"
+    ],
+    "mit_restaurant": [
+      "NER_mit-restaurant_sft",
+      "ET_mit-restaurant_sft",
+      "NER_mit-movie_sft",
+      "ET_mit-movie_sft",
+      "NER_FabNER_sft",
+      "ET_FabNER_sft"
+    ],
+    "conll04": [
+      "RE_conll04",
+      "EPR_conll04_sample_5000_sft",
+      "EP_conll04_sft",
+      "RE_New-York-Times-RE_sample_30000_sft",
+      "EPR_New-York-Times-RE_sample_30000_sft"
+    ],
+    "new_york_times": [
+      "RE_New-York-Times-RE_sample_30000_sft",
+      "EPR_New-York-Times-RE_sample_30000_sft",
+      "RE_conll04",
+      "EPR_conll04_sample_5000_sft",
+      "EP_conll04_sft"
+    ],
+    "glue_fhx": [
+      "cola_qa_train",
+      "mnli_qa_train",
+      "mrpc_qa_train",
+      "qnli_qa_train",
+      "qqp_qa_train",
+      "rte_qa_train",
+      "sst2_qa_train"
+    ]
+  },
+  "huggingface_note": "The full adapter collection will be uploaded to Hugging Face."
+}

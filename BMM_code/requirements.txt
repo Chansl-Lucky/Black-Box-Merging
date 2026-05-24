@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+numpy
+torch
+transformers
+peft
+cma
+safetensors
